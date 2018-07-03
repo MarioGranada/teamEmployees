@@ -1,0 +1,31 @@
+<div class="page-wrapper">
+  <section>
+      <div class='page-title'>Employees</div>
+      <div class='search-box'></div>
+  </section>
+  <a class='action-icon new-employee' routerLink='/employees/new'>+ Add new Employee</a>
+  <section class='page-list'>
+      <div class='row titles-row'>
+          <div class='cell large-cell'> Name (job title)</div>
+          <div class='cell xsmall-cell'>Age</div>
+          <div class='cell mid-cell'>Username</div>
+          <div class='cell small-cell'>Hire Date</div>
+          <div class='cell small-cell'></div>
+      </div>
+      <div class='content-row row' *ngIf="employeeList && employeeList.length">
+          <div class='row employee-row' *ngFor='let employee of employeeList'>
+                <div class='cell large-cell'> {{employee.name}} <br> {{employee.jobTitle}} </div>
+                <div class='cell xsmall-cell'>{{employee.age}} </div>
+                <div class='cell mid-cell'>{{employee.username}} </div>
+                <div class='cell small-cell'>{{employee.hireDate}} </div>
+                <div class='cell small-cell'>
+                    <!-- TODO: change 'actions' verbs to related icons -->
+                    <a class='action-icon' routerLink='/employee/{{employee.id}}'>Edit</a>
+                    <a class='action-icon' routerLink='/employee/{{employee.id}}/?view=true'>View</a>
+                    <a class='action-icon' href='#' (click)='removeEmployee(employee)'>Remove</a>
+                </div>
+          </div>
+      </div>
+  </section>
+  <a class='action-icon new-employee' routerLink='/employees/new'>+ Add new Employee</a>
+</div>
