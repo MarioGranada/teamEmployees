@@ -21,8 +21,8 @@
                 <div class='cell small-cell'>
                     <!-- TODO: change 'actions' verbs to related icons -->
                     <a class='action-icon' routerLink='/employee/{{employee.id}}'>Edit</a>
-                    <a class='action-icon' routerLink='/employee/{{employee.id}}/?view=true'>View</a>
-                    <a class='action-icon' href='#' (click)='removeEmployee(employee)'>Remove</a>
+                    <a class='action-icon' routerLink='/employee/{{employee.id}}' [queryParams]="{view:'true'}">View</a>
+                    <div class='action-icon' (click)='removeEmployee(employee)'>Remove</div>
                 </div>
           </div>
       </div>

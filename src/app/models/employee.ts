@@ -7,7 +7,7 @@ export class Employee {
   jobTitle: String;
   dateOfBirthday: Date;
   country: String;
-  status: String;
+  status: Boolean;
   area: String;
   tipRate: Number;
 }
