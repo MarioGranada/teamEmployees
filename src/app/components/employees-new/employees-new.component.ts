@@ -48,7 +48,7 @@ export class EmployeesNewComponent implements OnInit {
     this.toggleJobTitleSelectBox('');
   }
 
-  getCountries(): any {
+  getCountries(): void {
     this.countryService
       .getAllCountries()
       .subscribe(cts => (this.countries = cts));
@@ -99,7 +99,7 @@ export class EmployeesNewComponent implements OnInit {
 
   createForm(): void {
     this.employeeForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.maxLength(15)]],
       username: ['', Validators.required],
       hireDate: ['', Validators.required],
       jobTitle: ['', Validators.required],
