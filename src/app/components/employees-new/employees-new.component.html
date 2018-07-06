@@ -1,3 +1,85 @@
-<p>
-  employees-new works!
-</p>
+<div class="user-wrapper container-fluid">
+  <h1 class="user-title col">New Employee</h1>
+  <form [formGroup]="employeeForm" novalidate>
+    <div class="formGroup">
+
+      <div class="row">
+        <label class="center-block col-md-6">
+          Name
+          <input class="form-control" type="text" formControlName="name">
+        </label>
+
+        <label class="center-block col-md-6">
+          Area
+          <button type='button' (click)="toggleJobTitleSelectBox('services')">Services</button>
+          <button type='button' (click)="toggleJobTitleSelectBox('kitchen')">Kitchen</button>
+          <input [hidden]="true" [(ngModel)]="selectedArea" class="form-control" type="text" formControlName="area">
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="center-block col-md-6">
+          Dob
+          <input class="form-control" type="date" formControlName="dateOfBirthday">
+        </label>
+
+        <label class="center-block col-md-6">
+          Job Title
+          <select-box (valueChange)="getSelectedJobTitle($event)" *ngIf="jobTitles && jobTitles.length" [optionsList]="jobTitles" [optionsValueField]="'value'"
+            [optionsLabelField]="'label'" [placeholder]="'Select a Job title'" ngDefaultControl>
+          </select-box>
+        </label>
+        <input [hidden]="true" [(ngModel)]="selectedJobTitle" class="form-control" type="text" formControlName="jobTitle">
+      </div>
+      <div class="row">
+        <label class="center-block col-md-6">
+          Country
+          <select-box (valueChange)="getSelectedCountry($event)" *ngIf="countries && countries.length" [optionsList]="countries" [optionsValueField]="'alpha3Code'"
+            [optionsLabelField]="'name'" [placeholder]="'Select a Country'" ngDefaultControl>
+          </select-box>
+        </label>
+        <input [hidden]="true" [(ngModel)]="selectedCountry" class="form-control" type="text" formControlName="country">
+      </div>
+      <div class="row">
+        <label class="center-block col-md-6">
+          Username
+          <input class="form-control" type="text" formControlName="username">
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="center-block col-md-6">
+          Hire Date
+          <input class="form-control" type="date" formControlName="hireDate">
+        </label>
+
+        <label class="center-block col-md-6" [hidden]="!hasTipRate">
+          Tip rate
+          <input class="form-control" type="number" formControlName="tipRate">
+        </label>
+      </div>
+      <div class="row">
+        <label class="center-block col-md-6 row">
+          <span class="col-md-2">Status</span>
+          <span class="col-md-5">
+            Active
+            <input class="col form-control" type="radio" formControlName="status" value="true" checked>
+          </span>
+          <span class="col-md-5">
+            Inactive
+            <input class=" colform-control" type="radio" formControlName="status" value="false">
+          </span>
+        </label>
+      </div>
+      <div class="bottom-buttons-section row">
+        <p class='action-icon new-employee col-md-6' (click)="goBack()">
+          < Back</p>
+            <button type="button" class="submit-button " (click)="saveEmployee()">Save</button>
+      </div>
+    </div>
+  </form>
+  <!-- TODO: remove below testing flags -->
+  <!-- <p>Form value: {{ employeeForm.value | json}} </p>
+  <p>Form status: {{ employeeForm.status | json }} Note: In case it is still invalid after everything is valid it might be due
+    to area is missing at the form as itself (it is being updated each time any of the related buttons is clicked)</p> -->
+</div>
