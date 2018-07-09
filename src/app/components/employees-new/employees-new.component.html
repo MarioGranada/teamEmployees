@@ -74,12 +74,13 @@
       <div class="bottom-buttons-section row">
         <p class='action-icon new-employee col-md-6' (click)="goBack()">
           < Back</p>
-            <button type="button" class="submit-button " (click)="saveEmployee()">Save</button>
+            <button type="submit" [disabled]="employeeForm.pristine" class="submit-button btn btn-success" (click)="saveEmployee()">Save</button>
+            <button type="button" [disabled]="employeeForm.pristine" class="submit-button btn btn-danger" (click)="revert()">Cancel</button>
       </div>
     </div>
   </form>
   <!-- TODO: remove below testing flags -->
-  <!-- <p>Form value: {{ employeeForm.value | json}} </p>
+  <p>Form value: {{ employeeForm.value | json}} </p>
   <p>Form status: {{ employeeForm.status | json }} Note: In case it is still invalid after everything is valid it might be due
-    to area is missing at the form as itself (it is being updated each time any of the related buttons is clicked)</p> -->
+    to area is missing at the form as itself (it is being updated each time any of the related buttons is clicked)</p>
 </div>

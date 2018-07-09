@@ -5,6 +5,7 @@ import { CountryService } from '../../services/country.service';
 import { KITCHEN_POSITIONS } from '../../mocks/mock-kitchen-pos';
 import { SERVICES_POSITIONS } from '../../mocks/mock-services-pos';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Employee } from '../../models/employee';
 
 @Component({
   selector: 'app-employees-new',
@@ -18,6 +19,7 @@ export class EmployeesNewComponent implements OnInit {
   selectedArea = '';
   selectedJobTitle = '';
   selectedCountry = '';
+  newEmployee: Employee;
 
   // employeeForm = new FormGroup({
   //   name: new FormControl(),
@@ -55,10 +57,40 @@ export class EmployeesNewComponent implements OnInit {
   }
 
   goBack(): void {
+    this.revert();
     this.location.back();
   }
 
-  saveEmployee(): void {}
+  saveEmployee(): void {
+    this.prepareEmployee();
+    this.employeeService.addEmployee(this.newEmployee).subscribe(emp => {
+      console.log('new employee saved', emp);
+      this.rebuildForm();
+      this.goBack();
+    });
+  }
+
+  private prepareEmployee(): void {
+    this.newEmployee = Object.assign({}, this.employeeForm.value);
+  }
+
+  revert() {
+    this.rebuildForm();
+  }
+
+  rebuildForm(): void {
+    this.employeeForm.reset({
+      name: '',
+      username: '',
+      hireDate: '',
+      jobTitle: '',
+      dateOfBirthday: '',
+      country: '',
+      status: '',
+      area: '',
+      tipRate: ''
+    });
+  }
 
   toggleJobTitleSelectBox(area): void {
     switch (area) {
