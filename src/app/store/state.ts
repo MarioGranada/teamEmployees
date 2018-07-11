@@ -1,12 +1,17 @@
-import {
-  initialState as employee,
-  EmployeeState
-} from './employee/employee.state';
+// import {
+//   initialState as employee,
+//   EmployeeState
+// } from './employee/employee.state';
+
+// export interface AppState {
+//   employee: EmployeeState;
+// }
+
+// export const initialState: AppState = {
+//   employee
+// };
+import { Employee } from '../models/employee';
 
 export interface AppState {
-  employee: EmployeeState;
+  readonly employee: Employee[];
 }
-
-export const initialState: AppState = {
-  employee
-};

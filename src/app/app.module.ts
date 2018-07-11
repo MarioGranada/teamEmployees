@@ -4,8 +4,9 @@ import { SelectModule } from 'ng-select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './store/counter';
-import { AppStoreModule } from './store/app-store.module';
+// import { AppStoreModule } from './store/app-store.module';
 import { AppStore } from './app.store';
+import { employees } from './store/employee/employee.state';
 
 import { AppComponent } from './app.component';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
@@ -38,8 +39,9 @@ import { SelectBoxOptionComponent } from './components/child-components/select-b
     FormsModule,
     SelectModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({ employees })
     // StoreModule.forRoot({ count: counterReducer })
-    AppStoreModule
+    // AppStoreModule
   ],
   providers: [AppStore],
   bootstrap: [AppComponent]
