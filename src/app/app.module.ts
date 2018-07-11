@@ -2,12 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SelectModule } from 'ng-select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './store/counter';
+import { AppStoreModule } from './store/app-store.module';
+import { AppStore } from './app.store';
 
 import { AppComponent } from './app.component';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { EmployeesNewComponent } from './components/employees-new/employees-new.component';
 import { EmployeesEditComponent } from './components/employees-edit/employees-edit.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -33,9 +37,11 @@ import { SelectBoxOptionComponent } from './components/child-components/select-b
     // }),
     FormsModule,
     SelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // StoreModule.forRoot({ count: counterReducer })
+    AppStoreModule
   ],
-  providers: [],
+  providers: [AppStore],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
