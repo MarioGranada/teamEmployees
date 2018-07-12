@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
-import { select } from '@ngrx/store';
-import * as actions from './store/actions';
-// import { AppState } from './store/state';
+import { Employee } from './models/employee';
 
-@Injectable()
-export class AppStore {}
+export interface AppStore {
+  employees: Employee[];
+}

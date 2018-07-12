@@ -16,6 +16,9 @@ export class EmployeesListComponent implements OnInit {
   }
 
   getEmployees(): void {
+    // this.employeeService
+    //   .getEmployees()
+    //   .subscribe(employees => (this.employeeList = employees));
     this.employeeService
       .getEmployees()
       .subscribe(employees => (this.employeeList = employees));
@@ -23,6 +26,6 @@ export class EmployeesListComponent implements OnInit {
 
   removeEmployee(employee: Employee): void {
     this.employeeList = this.employeeList.filter(emp => emp !== employee);
-    this.employeeService.deleteEmployee(employee).subscribe();
+    // this.employeeService.deleteEmployee(employee).subscribe();
   }
 }

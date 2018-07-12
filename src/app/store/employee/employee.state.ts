@@ -1,23 +1,3 @@
-// import { EMPLOYEES } from '../../mocks/mock-employees';
-// import { Employee } from '../../models/employee';
-// export interface EmployeeState {
-//   // id: Number;
-//   // name: String;
-//   // age: Number;
-//   // username: String;
-//   // hireDate: Date;
-//   // jobTitle: String;
-//   // dateOfBirthday: Date;
-//   // country: String;
-//   // status: Boolean;
-//   // area: String;
-//   // tipRate: Number;
-//   employeesList: Employee[];
-// }
-
-// export const initialState: EmployeeState = {
-//   employeesList: EMPLOYEES
-// };
 import { Employee } from '../../models/employee';
 import { Action, ActionReducer, State } from '@ngrx/store';
 import { EMPLOYEES } from '../../mocks/mock-employees';

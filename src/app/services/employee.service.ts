@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { EMPLOYEES } from '../mocks/mock-employees';
 import { Employee } from '../models/employee';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Store } from '../../../node_modules/@ngrx/store';
+import { AppStore } from '../app.store';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,26 +13,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class EmployeeService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store<AppStore>) {}
+
+  getEmployees(): Observable<Employee[]> {
+    return this.store.select('employees');
+  }
 
   private employeesUrl = 'api/employees';
 
-  getEmployees(): Observable<Employee[]> {
-    // return of(EMPLOYEES);
-    return this.http.get<Employee[]>(this.employeesUrl);
-  }
-
-  // getEmployee(id: number): Observable<Employee> {
-  //   return of(EMPLOYEES.find(employee => employee.id === id));
+  // getEmployees(): void {
+  //   return this.http.get<Employee[]>(this.employeesUrl);
   // }
 
-  getEmployee(id: number): Observable<Employee> {
+  getEmployee(id: number): any {
     const url = `${this.employeesUrl}/${id}`;
     return this.http.get<Employee>(url);
   }
 
   /** PUT: update the employee on the server */
-  updateEmployee(employee: Employee): Observable<any> {
+  updateEmployee(employee: Employee): any {
     return this.http.put(this.employeesUrl, employee, httpOptions);
   }
 
@@ -41,7 +41,7 @@ export class EmployeeService {
   }
 
   /** DELETE: delete the employee from the server */
-  deleteEmployee(employee: Employee | number): Observable<Employee> {
+  deleteEmployee(employee: Employee | number): any {
     const id = typeof employee === 'number' ? employee : employee.id;
     const url = `${this.employeesUrl}/${id}`;
 
@@ -49,7 +49,7 @@ export class EmployeeService {
   }
 
   /* GET Employees whose name contains search term */
-  searchEmployees(term: string): Observable<Employee[]> {
+  searchEmployees(term: string): any {
     if (!term.trim()) {
       return of([]);
     }
