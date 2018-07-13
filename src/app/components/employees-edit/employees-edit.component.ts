@@ -29,9 +29,10 @@ export class EmployeesEditComponent implements OnInit {
 
     this.isViewEmployee = isViewEmployee && isViewEmployee === 'true';
     if (!this.isViewEmployee) {
-      this.employeeService
-        .getEmployee(id)
-        .subscribe(employee => (this.currentEmployee = employee));
+      this.employeeService.getEmployee(id).subscribe(employees => {
+        this.currentEmployee = employees.selectedEmployee;
+      });
+      // this.currentEmployee = this.employeeService.getEmployee(id);
     } else {
       this.currentEmployee = null;
     }
@@ -41,9 +42,9 @@ export class EmployeesEditComponent implements OnInit {
     this.location.back();
   }
 
-  save(): void {
-    this.employeeService
-      .updateEmployee(this.currentEmployee)
-      .subscribe(() => this.goBack());
-  }
+  // save(): void {
+  //   this.employeeService
+  //     .updateEmployee(this.currentEmployee)
+  //     .subscribe(() => this.goBack());
+  // }
 }

@@ -10,10 +10,15 @@ export const GET_EMPLOYEE = '[Employee] Get Employee';
 export const SAVE_EMPLOYEE = '[Employee] Save Employee';
 export const DELETE_EMPLOYEE = '[Employee] Delete Employee';
 export const RESET_EMPLOYEES_STATE = '[Employee] Reset Employees';
+
 export const initialEmployees: Employee[] = EMPLOYEES;
+export const initialEmployeesState = {
+  employees: initialEmployees,
+  selectedEmployee: null
+};
 
 export const employees: ActionReducer<Employee[]> = (
-  state: Employee[] = initialEmployees,
+  state: any = initialEmployeesState,
   action: EmployeeActionType
 ) => {
   switch (action.type) {
@@ -28,41 +33,54 @@ export const employees: ActionReducer<Employee[]> = (
     case DELETE_EMPLOYEE:
       return deleteEmployee(state, action.payload);
     case RESET_EMPLOYEES_STATE:
-      return resetEmployees(initialEmployees);
+      return resetEmployees(initialEmployeesState);
     default:
       return state;
   }
 };
 
-function loadAllEmployees(state): any[] {
-  return [...state];
+function loadAllEmployees(state): any {
+  return { ...state };
 }
 
-function addNewEmployee(state, payload): any[] {
-  return [...state, payload];
+function addNewEmployee(state, payload): any {
+  return { employees: [...state.employees, payload], selectedEmployee: null };
 }
 
 function getEmployee(state, payload): any {
-  return _.find(state, emp => {
-    return emp.id === payload.id;
-  });
+  // return _.find(state, emp => {
+  //   return emp.id === payload.id;
+  // });
+
+  return {
+    employees: [...state.employees],
+    selectedEmployee: _.find(state.employees, emp => {
+      return emp.id === payload.id;
+    })
+  };
 }
 
-function saveEmployee(state, payload): any[] {
-  var oldEmployeeIndex = _.indexOf(state, payload);
-  return [
-    ...state.slice(0, oldEmployeeIndex),
-    payload,
-    ...state.slice(oldEmployeeIndex + 1)
-  ];
+function saveEmployee(state, payload): any {
+  var oldEmployeeIndex = _.indexOf(state.employees, payload);
+  return {
+    employees: [
+      ...state.employees.slice(0, oldEmployeeIndex),
+      payload,
+      ...state.employees.slice(oldEmployeeIndex + 1)
+    ],
+    selectedEmployee: null
+  };
 }
 
-function deleteEmployee(state, payload): any[] {
-  return _.filter(state, emp => {
-    return emp.id !== payload.id;
-  });
+function deleteEmployee(state, payload): any {
+  return {
+    employees: _.filter(state.employees, emp => {
+      return emp.id !== payload.id;
+    }),
+    selectedEmployee: null
+  };
 }
 
-function resetEmployees(initialState): any[] {
+function resetEmployees(initialState): any {
   return initialState;
 }

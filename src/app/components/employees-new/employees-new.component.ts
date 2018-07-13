@@ -72,6 +72,7 @@ export class EmployeesNewComponent implements OnInit {
 
   private prepareEmployee(): void {
     this.newEmployee = Object.assign({}, this.employeeForm.value);
+    this.newEmployee.id = Math.floor(Math.random() * 100 + 7);
   }
 
   revert() {
@@ -139,7 +140,7 @@ export class EmployeesNewComponent implements OnInit {
       country: ['', Validators.required],
       status: ['', Validators.required],
       area: ['', Validators.required],
-      tipRate: ['', Validators.required]
+      tipRate: ['']
     });
   }
 }

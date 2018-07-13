@@ -19,13 +19,16 @@ export class EmployeesListComponent implements OnInit {
     // this.employeeService
     //   .getEmployees()
     //   .subscribe(employees => (this.employeeList = employees));
-    this.employeeService
-      .getEmployees()
-      .subscribe(employees => (this.employeeList = employees));
+    this.employeeService.getEmployees().subscribe(employees => {
+      this.employeeList = employees.employees;
+      console.log('this is a test store', employees);
+    });
   }
 
   removeEmployee(employee: Employee): void {
-    this.employeeList = this.employeeList.filter(emp => emp !== employee);
-    // this.employeeService.deleteEmployee(employee).subscribe();
+    // this.employeeList = this.employeeList.filter(emp => emp !== employee);
+    this.employeeService.deleteEmployee(employee).subscribe(employees => {
+      this.employeeList = employees.employees;
+    });
   }
 }

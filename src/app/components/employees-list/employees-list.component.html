@@ -21,15 +21,13 @@
             <div class='cell mid-cell col-md-2'>{{employee.username}} </div>
             <div class='cell small-cell col-md-2'>{{employee.hireDate | date:'short'}} </div>
             <div class='cell small-cell col-md-2 row text-center'>
-                <!-- TODO: change 'actions' verbs to related icons -->
                 <a class='action-icon col-md-4' routerLink='/employee/{{employee.id}}'>
                     <fa name="edit"></fa>
                 </a>
                 <a class='action-icon col-md-4' routerLink='/employee/{{employee.id}}' [queryParams]="{view:'true'}">
                     <fa name="eye"></fa>
                 </a>
-                <!-- <div class='action-icon' (click)='removeEmployee(employee)'>Remove</div> -->
-                <fa class='action-icon col-md-4' (click)='removeEmployee(employee)' name="trash"></fa>
+                <fa class='action-icon col-md-4' (click)='removeEmployee(employee.id)' name="trash"></fa>
             </div>
         </div>
     </section>
