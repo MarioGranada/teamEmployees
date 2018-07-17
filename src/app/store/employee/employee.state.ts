@@ -48,10 +48,6 @@ function addNewEmployee(state, payload): any {
 }
 
 function getEmployee(state, payload): any {
-  // return _.find(state, emp => {
-  //   return emp.id === payload.id;
-  // });
-
   return {
     employees: [...state.employees],
     selectedEmployee: _.find(state.employees, emp => {

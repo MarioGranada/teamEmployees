@@ -21,19 +21,6 @@ export class EmployeesNewComponent implements OnInit {
   selectedCountry = '';
   newEmployee: Employee;
 
-  // employeeForm = new FormGroup({
-  //   name: new FormControl(),
-  //   age: new FormControl(),
-  //   username: new FormControl(),
-  //   hireDate: new FormControl(),
-  //   jobTitle: new FormControl(),
-  //   dateOfBirthday: new FormControl(),
-  //   country: new FormControl(),
-  //   status: new FormControl(),
-  //   area: new FormControl(),
-  //   tipRate: new FormControl()
-  // });
-
   employeeForm: FormGroup;
 
   constructor(

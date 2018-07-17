@@ -18,7 +18,9 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   @Input() optionsList: any[];
   @Input() optionsValueField: string;
   @Input() optionsLabelField: string;
-  @Input() placeholder: String;
+  @Input() placeholder: string;
+  @Input() selectedOption: string;
+  @Input() isDisabled: boolean;
   @Output() valueChange = new EventEmitter();
 
   items: any[];

@@ -5,13 +5,6 @@ import { Store } from '../../../node_modules/@ngrx/store';
 import { AppStore } from '../app.store';
 import * as employeeState from '../store/employee/employee.state';
 
-export const LOAD_EMPLOYEES = '[Employee] Load employees';
-export const ADD_EMPLOYEE = '[Employee] Add Employee';
-export const GET_EMPLOYEE = '[Employee] Get Employee';
-export const SAVE_EMPLOYEE = '[Employee] Save Employee';
-export const DELETE_EMPLOYEE = '[Employee] Delete Employee';
-export const RESET_EMPLOYEES_STATE = '[Employee] Reset Employees';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -52,14 +45,10 @@ export class EmployeeService {
   /** DELETE: delete the employee from the server */
   deleteEmployee(employee: Employee | number): Observable<any> {
     const id = typeof employee === 'number' ? employee : employee.id;
-    // const url = `${this.employeesUrl}/${id}`;
-
-    // return this.http.delete<Employee>(url, httpOptions);
     this.store.dispatch({
       type: employeeState.DELETE_EMPLOYEE,
       payload: { id: id }
     });
-    console.log('in here!!!');
     return this.store.select('employees');
   }
 

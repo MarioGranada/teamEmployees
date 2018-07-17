@@ -1,13 +1,13 @@
 export class Employee {
-  id: Number;
-  name: String;
-  age: Number;
-  username: String;
+  id: number;
+  name: string;
+  age: number;
+  username: string;
   hireDate: Date;
-  jobTitle: String;
+  jobTitle: string;
   dateOfBirthday: Date;
-  country: String;
-  status: Boolean;
-  area: String;
-  tipRate: Number;
+  country: string;
+  status: boolean;
+  area: string;
+  tipRate: number;
 }

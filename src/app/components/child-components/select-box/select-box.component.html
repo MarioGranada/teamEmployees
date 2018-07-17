@@ -1,6 +1,3 @@
-<ng-select [options]='items' 
-[(ngModel)]="selectedOption"
-placeholder="{{placeholder}}" 
-(selected)="emitSelectedOption($event)"
->
+<ng-select [options]='items' [(ngModel)]="selectedOption" placeholder="{{placeholder}}" (selected)="emitSelectedOption($event)"
+    [disabled]="isDisabled">
 </ng-select>
