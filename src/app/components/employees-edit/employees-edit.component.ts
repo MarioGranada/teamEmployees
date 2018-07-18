@@ -62,7 +62,11 @@ export class EmployeesEditComponent implements OnInit {
   }
 
   prepareEmployee(): void {
-    var tempEmployee = Object.assign({}, this.employeeForm.value);
+    Object.assign(this.currentEmployee, this.employeeForm.value);
+    this.currentEmployee.dateOfBirthday = new Date(
+      this.currentEmployee.dateOfBirthday
+    );
+    this.currentEmployee.hireDate = new Date(this.currentEmployee.hireDate);
   }
 
   revert() {
@@ -172,9 +176,11 @@ export class EmployeesEditComponent implements OnInit {
     this.selectedCountry = country;
   }
 
-  // save(): void {
-  //   this.employeeService
-  //     .updateEmployee(this.currentEmployee)
-  //     .subscribe(() => this.goBack());
-  // }
+  saveEmployee(): void {
+    this.prepareEmployee();
+    this.employeeService.updateEmployee(this.currentEmployee).subscribe(emp => {
+      console.log('employee updated', emp);
+      this.goBack();
+    });
+  }
 }

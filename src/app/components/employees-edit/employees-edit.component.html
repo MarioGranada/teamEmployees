@@ -79,7 +79,7 @@
             <div class="bottom-buttons-section row">
                 <p class='action-icon new-employee col-md-6' (click)="goBack()">
                     < Back</p>
-                        <button type="submit" [disabled]="employeeForm.pristine" class="submit-button btn btn-success" (click)="saveEmployee()" *ngIf="
+                        <button type="button" [disabled]="employeeForm.pristine" class="submit-button btn btn-success" (click)="saveEmployee()" *ngIf="
                         !isViewEmployee">Save</button>
                         <button type="button" [disabled]="employeeForm.pristine" class="submit-button btn btn-danger" (click)="revert()" *ngIf="
                         !isViewEmployee">Cancel</button>

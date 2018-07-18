@@ -27,10 +27,15 @@ export class EmployeeService {
     return this.store.select('employees');
   }
 
-  // /** PUT: update the employee on the server */
-  // updateEmployee(employee: Employee): any {
-  //   return this.http.put(this.employeesUrl, employee, httpOptions);
-  // }
+  /** PUT: update the employee on the server */
+  updateEmployee(employee: Employee): Observable<any> {
+    // return this.http.put(this.employeesUrl, employee, httpOptions);
+    this.store.dispatch({
+      type: employeeState.SAVE_EMPLOYEE,
+      payload: employee
+    });
+    return this.store.select('employees');
+  }
 
   /** POST: add a new employee to the server */
   addEmployee(employee: Employee): Observable<any> {
