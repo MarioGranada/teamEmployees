@@ -97,7 +97,10 @@ export class EmployeesEditComponent implements OnInit {
         Validators.required
       ],
       hireDate: [
-        { value: this.currentEmployee.hireDate, disabled: this.isViewEmployee },
+        {
+          value: this.currentEmployee.hireDate.toISOString().substring(0, 10),
+          disabled: this.isViewEmployee
+        },
         Validators.required
       ],
       jobTitle: [
@@ -106,7 +109,9 @@ export class EmployeesEditComponent implements OnInit {
       ],
       dateOfBirthday: [
         {
-          value: this.currentEmployee.dateOfBirthday,
+          value: this.currentEmployee.dateOfBirthday
+            .toISOString()
+            .substring(0, 10),
           disabled: this.isViewEmployee
         },
         Validators.required
@@ -144,7 +149,6 @@ export class EmployeesEditComponent implements OnInit {
         this.jobTitles = SERVICES_POSITIONS;
     }
     this.selectedArea = area;
-    this.selectedJobTitle = '';
   }
 
   toogleTipRate(jobTitle): void {
